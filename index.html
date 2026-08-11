@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>구매 전문가 PR | 산업차량 유압·동력·전장 조달 전문가</title>
+<meta name="description" content="지게차(산업차량) 유압, 동력, 전장품 구매를 담당하는 구매 전문가 소개 페이지">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   0. RESET & TOKENS
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
+
+:root{
+  /* --- color: emerald base + bright industrial accents (하나의 팔레트로 계통별 의미 부여) --- */
+  --emerald-950:#062A21;
+  --emerald-900:#0A3E31;
+  --emerald-800:#0B4F3F;
+  --emerald-700:#0E6350;
+  --emerald-600:#0E8C6D;
+  --emerald-400:#3ED9A0;
+  --emerald-200:#B9F3D8;
+
+  --amber-400:#FFB238;   /* 유압 계통 색 */
+  --amber-500:#FF9A1F;
+  --sky-400:#33C1FF;     /* 전장 계통 색 */
+  --sky-500:#12A6E8;
+  --power-400:#3ED9A0;   /* 동력 계통 = 브랜드 emerald 밝은 톤 */
+
+  --bg:#F5FAF7;
+  --paper:#FFFFFF;
+  --ink:#0B2A22;
+  --ink-soft:#4C6459;
+  --ink-faint:#7C8F86;
+  --line: rgba(11,42,34,.12);
+  --line-strong: rgba(11,42,34,.22);
+
+  --font-display:"Nanum Gothic", sans-serif;
+  --font-body:"Nanum Gothic", sans-serif;
+  --font-mono:"Nanum Gothic Coding", monospace;
+
+  --container: 1180px;
+  --radius-lg: 22px;
+  --radius-md: 14px;
+  --ease: cubic-bezier(.22,.68,.24,1);
+}
+
+html, body { margin:0; padding:0; }
+body{
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img, svg { display:block; max-width:100%; }
+a { color: inherit; text-decoration:none; }
+ul { margin:0; padding:0; list-style:none; }
+h1,h2,h3,h4,p { margin:0; }
+button { font-family: inherit; cursor:pointer; border:none; background:none; }
+
+::selection{ background: var(--emerald-400); color: var(--emerald-950); }
+
+/* focus visibility (a11y) */
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--sky-400);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.container{ max-width: var(--container); margin: 0 auto; padding: 0 32px; }
+@media (max-width:720px){ .container{ padding: 0 20px; } }
+
+.section{ position:relative; padding: 128px 0; }
+@media (max-width:720px){ .section{ padding: 84px 0; } }
+
+.eyebrow{
+  display:inline-flex; align-items:center; gap:10px;
+  font-family: var(--font-mono);
+  font-size: 13px; letter-spacing:.14em; font-weight:700;
+  color: var(--emerald-700);
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+.eyebrow::before{
+  content:""; width:22px; height:2px; background: var(--emerald-600);
+}
+
+.section-head{ max-width: 640px; margin-bottom: 56px; }
+.section-title{ font-size: clamp(28px, 3.4vw, 42px); font-weight:800; letter-spacing:-.01em; }
+.section-desc{ margin-top:14px; color: var(--ink-soft); font-size:16.5px; }
+
+/* scroll reveal */
+[data-reveal]{
+  opacity:0; transform: translateY(26px);
+  transition: opacity .8s var(--ease), transform .8s var(--ease);
+}
+[data-reveal].in-view{ opacity:1; transform:none; }
+[data-reveal="scale"]{ transform: translateY(20px) scale(.96); }
+[data-reveal="scale"].in-view{ transform:none; }
+
+/* stagger helper */
+.stagger > *{ transition-delay: calc(var(--i, 0) * 90ms); }
+
+/* ==========================================================================
+   1. BOOKMARK NAV  (책갈피형 사이드 탭 내비게이션)
+   ========================================================================== */
+.bookmark-nav{
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 200;
+  display:flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.bookmark-tab{
+  display:flex; align-items:center; justify-content:center;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  padding: 16px 9px;
+  font-size: 13px;
+  font-weight:700;
+  letter-spacing: .18em;
+  color:#fff;
+  background: var(--emerald-800);
+  border-radius: 10px 0 0 10px;
+  box-shadow: -3px 3px 10px rgba(6,42,33,.18);
+  transform: translateX(30px);
+  transition: transform .35s var(--ease), background .35s var(--ease), box-shadow .35s var(--ease);
+  cursor:pointer;
+  position:relative;
+}
+.bookmark-tab .dot{
+  width:6px; height:6px; border-radius:50%;
+  background: rgba(255,255,255,.55);
+  margin-bottom:10px;
+  transition: background .3s;
+}
+.bookmark-tab:hover,
+.bookmark-tab.active{
+  transform: translateX(0);
+}
+.bookmark-tab.active{ background: var(--emerald-600); }
+.bookmark-tab.active .dot{ background: var(--amber-400); }
+.bookmark-tab[data-accent="amber"].active{ background: var(--amber-500); }
+.bookmark-tab[data-accent="sky"].active{ background: var(--sky-500); }
+
+@media (max-width: 860px){
+  .bookmark-nav{ top:auto; bottom: 14px; right: 14px; transform:none; flex-direction:row; gap:6px; }
+  .bookmark-tab{
+    writing-mode: horizontal-tb; padding:0; width:12px; height:12px;
+    border-radius:50%; transform:none; box-shadow: 0 2px 8px rgba(6,42,33,.25);
+  }
+  .bookmark-tab .dot, .bookmark-tab span{ display:none; }
+  .bookmark-tab.active{ width:28px; border-radius:8px; }
+}
+
+/* skip link */
+.skip-link{
+  position:absolute; left:-999px; top:auto;
+  background:var(--emerald-800); color:#fff; padding:12px 18px; border-radius:8px; z-index:999;
+}
+.skip-link:focus{ left:20px; top:20px; }
+
+/* ==========================================================================
+   2. TOP PROGRESS BAR
+   ========================================================================== */
+.scroll-progress{
+  position: fixed; top:0; left:0; height:3px; width:0%;
+  background: linear-gradient(90deg, var(--amber-400), var(--emerald-400), var(--sky-400));
+  z-index: 300;
+  transition: width .1s linear;
+}
+
+/* ==========================================================================
+   3. HERO
+   ========================================================================== */
+.hero{
+  min-height: 100vh;
+  display:flex; align-items:center;
+  padding-top: 140px;
+  background:
+    radial-gradient(1100px 620px at 82% -10%, rgba(62,217,160,.20), transparent 60%),
+    radial-gradient(900px 520px at -10% 110%, rgba(255,178,56,.14), transparent 55%),
+    linear-gradient(180deg, var(--emerald-950), var(--emerald-900) 55%, var(--emerald-800));
+  color:#fff;
+  overflow:hidden;
+  position:relative;
+}
+.hero::after{
+  content:""; position:absolute; inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(700px 500px at 70% 30%, black, transparent 75%);
+  pointer-events:none;
+}
+.hero-grid{
+  position:relative; z-index:2;
+  display:grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items:center;
+}
+@media (max-width: 960px){ .hero-grid{ grid-template-columns:1fr; } }
+
+.hero-kicker{
+  font-family: var(--font-mono); font-size:13px; letter-spacing:.22em;
+  color: var(--emerald-200); text-transform:uppercase; margin-bottom: 22px;
+  display:flex; align-items:center; gap:10px;
+}
+.hero-kicker .pulse{
+  width:8px; height:8px; border-radius:50%; background: var(--amber-400);
+  box-shadow:0 0 0 0 rgba(255,178,56,.6);
+  animation: pulse 2.2s infinite;
+}
+@keyframes pulse{
+  0%{ box-shadow:0 0 0 0 rgba(255,178,56,.55); }
+  70%{ box-shadow:0 0 0 12px rgba(255,178,56,0); }
+  100%{ box-shadow:0 0 0 0 rgba(255,178,56,0); }
+}
+.hero h1{
+  font-size: clamp(34px, 5.4vw, 60px);
+  font-weight:800; line-height:1.24; letter-spacing:-.01em;
+}
+.hero h1 .accent{
+  background: linear-gradient(90deg, var(--emerald-400), var(--sky-400) 70%);
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.hero p.lead{
+  margin-top:22px; font-size:18px; color: rgba(255,255,255,.82); max-width:520px;
+}
+.hero-role-tags{ display:flex; gap:10px; flex-wrap:wrap; margin-top:26px; }
+.hero-role-tags span{
+  font-family: var(--font-mono); font-size:12.5px; font-weight:700;
+  padding:8px 14px; border-radius:999px; border:1px solid rgba(255,255,255,.22);
+  background: rgba(255,255,255,.06); letter-spacing:.02em;
+}
+.hero-role-tags span:nth-child(1){ border-color: rgba(255,178,56,.5); }
+.hero-role-tags span:nth-child(2){ border-color: rgba(62,217,160,.5); }
+.hero-role-tags span:nth-child(3){ border-color: rgba(51,193,255,.5); }
+
+.hero-cta{ display:flex; gap:14px; margin-top:38px; flex-wrap:wrap; }
+.btn{
+  display:inline-flex; align-items:center; gap:10px;
+  padding: 15px 26px; border-radius: 999px; font-weight:700; font-size:15px;
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease);
+}
+.btn-primary{
+  background: linear-gradient(90deg, var(--emerald-400), var(--sky-400));
+  color: var(--emerald-950);
+  box-shadow: 0 14px 30px -12px rgba(62,217,160,.55);
+}
+.btn-primary:hover{ transform: translateY(-3px); box-shadow: 0 18px 34px -10px rgba(62,217,160,.65); }
+.btn-ghost{
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.28);
+  color:#fff;
+}
+.btn-ghost:hover{ background: rgba(255,255,255,.14); transform: translateY(-3px); }
+
+/* hero hydraulic diagram (signature element) */
+.hero-diagram{ position:relative; z-index:2; }
+.gauge-card{
+  background: rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.16);
+  border-radius: var(--radius-lg);
+  padding: 26px;
+  backdrop-filter: blur(6px);
+}
+.hydraulic-svg{ width:100%; height:auto; }
+.flow-line{
+  fill:none; stroke-width:2.4; stroke-linecap:round;
+  stroke-dasharray: 8 10;
+  animation: flow 2.4s linear infinite;
+}
+@keyframes flow{ to{ stroke-dashoffset:-180; } }
+.node-pulse{ animation: nodePulse 2.6s ease-in-out infinite; transform-origin: center; }
+@keyframes nodePulse{ 0%,100%{ transform:scale(1); opacity:1;} 50%{ transform:scale(1.35); opacity:.55; } }
+.diagram-caption{
+  display:flex; justify-content:space-between; margin-top:18px;
+  font-family: var(--font-mono); font-size:12px; color: rgba(255,255,255,.65);
+}
+.diagram-caption span b{ display:block; color:#fff; font-size:13px; margin-top:4px; }
+
+.scroll-cue{
+  position:absolute; bottom: 30px; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+  color: rgba(255,255,255,.6); font-family: var(--font-mono); font-size:11px; letter-spacing:.18em;
+  z-index:2;
+}
+.scroll-cue .stick{ width:1px; height:34px; background: linear-gradient(180deg, rgba(255,255,255,.8), transparent); position:relative; overflow:hidden; }
+.scroll-cue .stick::after{
+  content:""; position:absolute; top:-100%; left:0; width:100%; height:100%;
+  background: var(--amber-400); animation: cue 1.8s ease-in-out infinite;
+}
+@keyframes cue{ 0%{ top:-100%; } 60%{ top:100%; } 100%{ top:100%; } }
+
+/* ==========================================================================
+   4. ABOUT
+   ========================================================================== */
+.about{ background: var(--paper); }
+.about-grid{ display:grid; grid-template-columns: .95fr 1.05fr; gap: 64px; align-items:start; }
+@media (max-width: 900px){ .about-grid{ grid-template-columns:1fr; gap:40px; } }
+
+.profile-card{
+  background: linear-gradient(160deg, var(--emerald-800), var(--emerald-950));
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  color:#fff;
+  position:relative;
+  overflow:hidden;
+}
+.profile-card::before{
+  content:""; position:absolute; right:-40px; top:-40px; width:180px; height:180px;
+  border-radius:50%; background: radial-gradient(circle, rgba(62,217,160,.35), transparent 70%);
+}
+.avatar{
+  width:78px; height:78px; border-radius:20px;
+  background: linear-gradient(135deg, var(--emerald-400), var(--sky-400));
+  display:flex; align-items:center; justify-content:center;
+  font-weight:800; font-size:26px; color: var(--emerald-950);
+  margin-bottom:20px;
+}
+.profile-card h3{ font-size:22px; font-weight:800; }
+.profile-card .role{ font-family: var(--font-mono); font-size:13px; color: var(--emerald-200); margin-top:6px; }
+.profile-mini{ margin-top:22px; display:grid; gap:10px; font-size:14px; color: rgba(255,255,255,.85); }
+.profile-mini li{ display:flex; gap:10px; align-items:flex-start; }
+.profile-mini li::before{ content:"—"; color: var(--amber-400); flex:none; }
+
+.about-copy p{ color: var(--ink-soft); font-size:16.5px; margin-bottom:18px; }
+.about-copy p:first-child{ font-size:19px; color: var(--ink); font-weight:700; }
+.about-strip{
+  margin-top: 34px; display:grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+}
+.about-strip .item{
+  border:1px solid var(--line); border-radius: var(--radius-md); padding:18px;
+}
+.about-strip .item b{
+  display:block; font-family: var(--font-mono); font-size:24px; color: var(--emerald-700); font-weight:700;
+}
+.about-strip .item span{ font-size:13px; color: var(--ink-faint); }
+@media (max-width:600px){ .about-strip{ grid-template-columns:1fr 1fr; } }
+
+/* ==========================================================================
+   5. EXPERTISE  (유압 / 동력 / 전장)
+   ========================================================================== */
+.expertise{ background: var(--bg); }
+.expertise-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+@media (max-width: 960px){ .expertise-grid{ grid-template-columns:1fr; } }
+
+.exp-card{
+  background: var(--paper);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  border: 1px solid var(--line);
+  position:relative;
+  overflow:hidden;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s;
+}
+.exp-card:hover{ transform: translateY(-8px); box-shadow: 0 24px 44px -20px rgba(11,42,34,.28); }
+.exp-card .bar{ position:absolute; top:0; left:0; right:0; height:5px; }
+.exp-card[data-c="amber"] .bar{ background: linear-gradient(90deg, var(--amber-500), var(--amber-400)); }
+.exp-card[data-c="power"] .bar{ background: linear-gradient(90deg, var(--emerald-600), var(--emerald-400)); }
+.exp-card[data-c="sky"] .bar{ background: linear-gradient(90deg, var(--sky-500), var(--sky-400)); }
+
+.exp-icon{
+  width:56px; height:56px; border-radius: 16px;
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom: 22px;
+}
+.exp-card[data-c="amber"] .exp-icon{ background: rgba(255,178,56,.14); color: var(--amber-500); }
+.exp-card[data-c="power"] .exp-icon{ background: rgba(62,217,160,.14); color: var(--emerald-700); }
+.exp-card[data-c="sky"] .exp-icon{ background: rgba(51,193,255,.14); color: var(--sky-500); }
+.exp-icon svg{ width:28px; height:28px; }
+
+.exp-card h3{ font-size:21px; font-weight:800; }
+.exp-card .eng{ font-family: var(--font-mono); font-size:12px; color: var(--ink-faint); letter-spacing:.1em; margin-top:2px; display:block; }
+.exp-card p{ margin-top:14px; color: var(--ink-soft); font-size:15px; }
+
+.tag-list{ display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; }
+.tag-list li{
+  font-family: var(--font-mono); font-size:12.5px; font-weight:700;
+  padding:7px 12px; border-radius:8px; background: var(--bg); color: var(--ink-soft);
+  border: 1px solid var(--line);
+}
+
+/* ==========================================================================
+   6. PROCESS (timeline)
+   ========================================================================== */
+.process{ background: var(--paper); }
+.timeline{ position:relative; display:grid; gap: 0; }
+.timeline::before{
+  content:""; position:absolute; left: 27px; top: 8px; bottom: 8px; width:2px;
+  background: linear-gradient(180deg, var(--amber-400), var(--emerald-400), var(--sky-400));
+}
+@media (max-width:720px){ .timeline::before{ left:19px; } }
+
+.t-step{ display:grid; grid-template-columns: 56px 1fr; gap: 24px; padding: 22px 0; position:relative; }
+@media (max-width:720px){ .t-step{ grid-template-columns: 40px 1fr; gap:16px; } }
+.t-num{
+  width:56px; height:56px; border-radius:50%;
+  background: var(--emerald-950); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-family: var(--font-mono); font-weight:700; font-size:16px;
+  position:relative; z-index:2;
+  box-shadow: 0 0 0 6px var(--paper);
+}
+@media (max-width:720px){ .t-num{ width:40px; height:40px; font-size:13px; } }
+.t-body h4{ font-size:19px; font-weight:800; }
+.t-body p{ margin-top:6px; color: var(--ink-soft); font-size:15px; max-width:560px; }
+
+/* ==========================================================================
+   7. ACHIEVEMENTS (gauges + counters)
+   ========================================================================== */
+.achievements{
+  background: linear-gradient(180deg, var(--emerald-950), var(--emerald-900));
+  color:#fff;
+}
+.achievements .section-head .section-desc{ color: rgba(255,255,255,.7); }
+.achievements .eyebrow{ color: var(--emerald-200); }
+
+.stat-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+@media (max-width: 960px){ .stat-grid{ grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px){ .stat-grid{ grid-template-columns: 1fr; } }
+
+.stat-card{
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: var(--radius-lg);
+  padding: 26px 20px 22px;
+  text-align:center;
+}
+.gauge-wrap{ width: 150px; margin: 0 auto; position:relative; }
+.gauge-wrap svg{ width:100%; }
+.gauge-track{ fill:none; stroke: rgba(255,255,255,.14); stroke-width:12; }
+.gauge-fill{ fill:none; stroke-width:12; stroke-linecap:round; transition: stroke-dashoffset 1.4s var(--ease); }
+.gauge-needle{ transform-origin: 100px 100px; transition: transform 1.4s var(--ease); }
+.gauge-value{
+  position:absolute; left:0; right:0; bottom: 4px; text-align:center;
+  font-family: var(--font-mono); font-weight:700; font-size: 26px;
+}
+.stat-card .label{ margin-top: 14px; font-size:14.5px; color: rgba(255,255,255,.72); }
+
+.bignum{ font-family: var(--font-mono); font-weight:700; font-size: 42px; color: var(--emerald-400); }
+.bignum + .label{ margin-top:10px; }
+.stat-card[data-accent="amber"] .gauge-fill,
+.stat-card[data-accent="amber"] .gauge-needle{ stroke: var(--amber-400); background: var(--amber-400); }
+.stat-card[data-accent="sky"] .bignum{ color: var(--sky-400); }
+.stat-card[data-accent="amber"] .bignum{ color: var(--amber-400); }
+
+/* ==========================================================================
+   8. SKILLS
+   ========================================================================== */
+.skills{ background: var(--bg); }
+.skills-grid{ display:grid; grid-template-columns: 1.05fr .95fr; gap: 60px; }
+@media (max-width:900px){ .skills-grid{ grid-template-columns:1fr; gap:40px; } }
+
+.bar-item{ margin-bottom: 20px; }
+.bar-item .top{ display:flex; justify-content:space-between; font-size:14.5px; margin-bottom:8px; }
+.bar-item .top b{ font-weight:700; }
+.bar-item .top span{ font-family: var(--font-mono); color: var(--ink-faint); }
+.bar-track{ height:10px; border-radius:999px; background: var(--line); overflow:hidden; }
+.bar-fill{
+  height:100%; border-radius:999px; width:0%;
+  background: linear-gradient(90deg, var(--emerald-600), var(--emerald-400));
+  transition: width 1.2s var(--ease);
+}
+
+.chip-cloud{ display:flex; flex-wrap:wrap; gap:10px; align-content:flex-start; }
+.chip{
+  padding:10px 16px; border-radius:999px; border:1px solid var(--line-strong);
+  background: var(--paper); font-size:14px; font-weight:700; color: var(--ink-soft);
+  transition: all .25s var(--ease);
+}
+.chip:hover{ background: var(--emerald-800); color:#fff; transform: translateY(-2px); }
+
+/* ==========================================================================
+   9. CONTACT
+   ========================================================================== */
+.contact{ background: var(--paper); }
+.contact-grid{ display:grid; grid-template-columns: .9fr 1.1fr; gap: 56px; }
+@media (max-width:900px){ .contact-grid{ grid-template-columns:1fr; gap:36px; } }
+
+.contact-info li{
+  display:flex; gap:14px; align-items:flex-start; margin-bottom: 20px; font-size:15px;
+}
+.contact-info .ico{
+  width:40px; height:40px; border-radius:12px; flex:none;
+  background: var(--emerald-800); color:#fff;
+  display:flex; align-items:center; justify-content:center;
+}
+.contact-info b{ display:block; font-size:13px; color: var(--ink-faint); font-weight:400; }
+
+.form-card{
+  background: var(--bg); border:1px solid var(--line); border-radius: var(--radius-lg); padding: 30px;
+}
+.form-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+@media (max-width:560px){ .form-row{ grid-template-columns:1fr; } }
+.form-card label{ font-size:13px; font-weight:700; color: var(--ink-soft); display:block; margin-bottom:8px; }
+.form-card input, .form-card textarea{
+  width:100%; padding: 13px 14px; border-radius:10px; border:1px solid var(--line-strong);
+  font-family: inherit; font-size:15px; background:#fff; color: var(--ink);
+}
+.form-card textarea{ min-height:110px; resize:vertical; }
+.form-card .full{ margin-bottom:16px; }
+.submit-row{ display:flex; align-items:center; gap:16px; margin-top:6px; flex-wrap:wrap; }
+.form-note{ font-size:12.5px; color: var(--ink-faint); }
+.toast{
+  display:none; margin-top:14px; padding:12px 16px; border-radius:10px;
+  background: var(--emerald-800); color:#fff; font-size:14px; font-weight:700;
+}
+.toast.show{ display:block; animation: toastIn .4s var(--ease); }
+@keyframes toastIn{ from{ opacity:0; transform: translateY(6px);} to{ opacity:1; transform:none; } }
+
+/* ==========================================================================
+   10. FOOTER
+   ========================================================================== */
+footer{
+  background: var(--emerald-950); color: rgba(255,255,255,.65);
+  padding: 40px 0; font-size:13.5px;
+}
+.footer-row{ display:flex; justify-content:space-between; align-items:center; gap:16px; flex-wrap:wrap; }
+.footer-row .brand{ color:#fff; font-weight:800; }
+.to-top{
+  width:40px; height:40px; border-radius:50%; background: rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.18); color:#fff; display:flex; align-items:center; justify-content:center;
+  transition: background .25s;
+}
+.to-top:hover{ background: var(--emerald-600); }
+</style>
+</head>
+<body>
+
+<a href="#hero" class="skip-link">본문 바로가기</a>
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- ===================== BOOKMARK NAV ===================== -->
+<nav class="bookmark-nav" aria-label="섹션 바로가기 책갈피">
+  <a class="bookmark-tab" href="#hero" data-target="hero"><span class="dot"></span><span>홈</span></a>
+  <a class="bookmark-tab" href="#about" data-target="about"><span class="dot"></span><span>소개</span></a>
+  <a class="bookmark-tab" href="#expertise" data-target="expertise" data-accent="amber"><span class="dot"></span><span>전문분야</span></a>
+  <a class="bookmark-tab" href="#process" data-target="process"><span class="dot"></span><span>업무프로세스</span></a>
+  <a class="bookmark-tab" href="#achievements" data-target="achievements" data-accent="sky"><span class="dot"></span><span>성과</span></a>
+  <a class="bookmark-tab" href="#skills" data-target="skills"><span class="dot"></span><span>역량</span></a>
+  <a class="bookmark-tab" href="#contact" data-target="contact" data-accent="amber"><span class="dot"></span><span>문의</span></a>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header id="hero" class="section hero">
+  <div class="container hero-grid">
+    <div>
+      <p class="hero-kicker"><span class="pulse"></span>KOREA INDUSTRIAL VEHICLE PARTS SOURCING</p>
+      <h1>지게차의 심장을 잇는<br><span class="accent">구매 전문가</span></h1>
+      <p class="lead">유압 · 동력 · 전장, 산업차량을 움직이는 세 가지 핵심 계통을&nbsp;
+        정확한 스펙 검증과 합리적인 원가로 조달합니다.</p>
+      <div class="hero-role-tags">
+        <span>유압 HYDRAULIC</span>
+        <span>동력 POWERTRAIN</span>
+        <span>전장 ELECTRICAL</span>
+      </div>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#contact">문의하기</a>
+        <a class="btn btn-ghost" href="#expertise">전문 분야 보기</a>
+      </div>
+    </div>
+
+    <div class="hero-diagram" data-reveal="scale">
+      <div class="gauge-card">
+        <svg class="hydraulic-svg" viewBox="0 0 420 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- connecting hydraulic lines -->
+          <path class="flow-line" d="M60,60 C140,60 140,150 210,150" stroke="#FFB238"/>
+          <path class="flow-line" d="M60,150 L210,150" stroke="#3ED9A0" style="animation-delay:-.5s"/>
+          <path class="flow-line" d="M60,240 C140,240 140,150 210,150" stroke="#33C1FF" style="animation-delay:-1s"/>
+          <path class="flow-line" d="M210,150 L360,150" stroke="#B9F3D8" style="animation-delay:-1.4s"/>
+
+          <!-- nodes -->
+          <circle cx="60" cy="60" r="7" fill="#FFB238"/>
+          <circle class="node-pulse" cx="60" cy="60" r="7" fill="#FFB238" opacity=".5"/>
+          <circle cx="60" cy="150" r="7" fill="#3ED9A0"/>
+          <circle class="node-pulse" cx="60" cy="150" r="7" fill="#3ED9A0" opacity=".5"/>
+          <circle cx="60" cy="240" r="7" fill="#33C1FF"/>
+          <circle class="node-pulse" cx="60" cy="240" r="7" fill="#33C1FF" opacity=".5"/>
+
+          <circle cx="210" cy="150" r="12" fill="#0A3E31" stroke="#fff" stroke-width="2"/>
+          <circle cx="360" cy="150" r="10" fill="none" stroke="#fff" stroke-width="2"/>
+          <circle cx="360" cy="150" r="4" fill="#fff"/>
+
+          <text x="76" y="55" fill="#FFCE85" font-size="13" font-family="Nanum Gothic Coding">유압</text>
+          <text x="76" y="145" fill="#B9F3D8" font-size="13" font-family="Nanum Gothic Coding">동력</text>
+          <text x="76" y="235" fill="#9FE3FF" font-size="13" font-family="Nanum Gothic Coding">전장</text>
+          <text x="336" y="140" fill="#fff" font-size="12" font-family="Nanum Gothic Coding">FORKLIFT</text>
+        </svg>
+        <div class="diagram-caption">
+          <span>SYSTEM<b>유압 · 동력 · 전장 통합</b></span>
+          <span>ROLE<b>부품 구매 · 원가관리</b></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-cue"><span>SCROLL</span><span class="stick"></span></div>
+</header>
+
+<!-- ===================== ABOUT ===================== -->
+<section id="about" class="section about">
+  <div class="container about-grid">
+    <div data-reveal>
+      <div class="profile-card">
+        <div class="avatar">OOO</div>
+        <h3>OOO&nbsp;구매 전문가</h3>
+        <p class="role">Industrial Vehicle Parts Sourcing / 지게차 유압·동력·전장 담당</p>
+        <ul class="profile-mini">
+          <li>산업차량(지게차) 유압 · 동력 · 전장품 구매 전담</li>
+          <li>국내외 협력사 발굴 및 원가 협상 리드</li>
+          <li>품질 규격 검증 및 납기 관리 체계 운영</li>
+        </ul>
+      </div>
+    </div>
+
+    <div data-reveal>
+      <p class="eyebrow">ABOUT</p>
+      <h2 class="section-title" style="margin-bottom:22px;">부품 하나에도<br>차량 전체의 신뢰가 달려 있습니다</h2>
+      <p>지게차는 유압 · 동력 · 전장 세 계통이 정확히 맞물려야 안전하고 효율적으로 작동합니다. 저는 이 세 계통의 핵심 부품을 담당하며, 스펙과 품질을 먼저 검증하고 그 다음 원가를 협상하는 순서를 지킵니다.</p>
+      <p>유압펌프·실린더의 압력 특성부터 동력계 액슬·모터의 출력 곡선, 전장 컨트롤러의 신호 체계까지 — 도면과 시방서를 직접 읽고 협력사와 대화합니다. 그래서 저의 구매는 단순한 가격 비교가 아니라 &ldquo;맞는 부품을 합리적인 값에&rdquo; 들여오는 일입니다.</p>
+      <div class="about-strip stagger">
+        <div class="item" style="--i:0"><b>8년+</b><span>산업차량 부품 구매 경력</span></div>
+        <div class="item" style="--i:1"><b>3계통</b><span>유압 · 동력 · 전장 전담</span></div>
+        <div class="item" style="--i:2"><b>42개사</b><span>협력사 네트워크 관리</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EXPERTISE ===================== -->
+<section id="expertise" class="section expertise">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">EXPERTISE</p>
+      <h2 class="section-title">세 가지 핵심 계통, 세 가지 전문성</h2>
+      <p class="section-desc">지게차를 구성하는 유압 · 동력 · 전장 계통의 부품을 각각의 특성에 맞게 조달합니다.</p>
+    </div>
+
+    <div class="expertise-grid">
+
+      <article class="exp-card" data-c="amber" data-reveal style="--i:0">
+        <div class="bar"></div>
+        <div class="exp-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v6"/><path d="M12 22v-6"/><circle cx="12" cy="12" r="4"/><path d="M4 12h4"/><path d="M16 12h4"/>
+          </svg>
+        </div>
+        <h3>유압 시스템</h3>
+        <span class="eng">HYDRAULIC SYSTEM</span>
+        <p>압력·유량 스펙을 기준으로 펌프·실린더·밸브류의 성능과 내구성을 검증하여 구매합니다.</p>
+        <ul class="tag-list">
+          <li>유압펌프</li><li>리프트 실린더</li><li>컨트롤 밸브</li><li>호스 &amp; 피팅</li><li>오일 쿨러</li>
+        </ul>
+      </article>
+
+      <article class="exp-card" data-c="power" data-reveal style="--i:1">
+        <div class="bar"></div>
+        <div class="exp-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2 3 14h7l-1 8 11-14h-7l1-6z"/>
+          </svg>
+        </div>
+        <h3>동력 계통</h3>
+        <span class="eng">POWERTRAIN</span>
+        <p>엔진·변속기부터 전동식 배터리·구동모터까지, 출력과 효율을 함께 검토해 소싱합니다.</p>
+        <ul class="tag-list">
+          <li>엔진</li><li>변속기 &amp; 액슬</li><li>구동모터</li><li>배터리팩</li><li>냉각계통</li>
+        </ul>
+      </article>
+
+      <article class="exp-card" data-c="sky" data-reveal style="--i:2">
+        <div class="bar"></div>
+        <div class="exp-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M4 9h2"/><path d="M4 15h2"/><path d="M18 9h2"/><path d="M18 15h2"/><path d="M9 4v2"/><path d="M15 4v2"/><path d="M9 18v2"/><path d="M15 18v2"/>
+          </svg>
+        </div>
+        <h3>전장품</h3>
+        <span class="eng">ELECTRICAL COMPONENTS</span>
+        <p>컨트롤러·센서·배선 하네스의 신호 규격과 내환경성을 검증하여 안정적으로 조달합니다.</p>
+        <ul class="tag-list">
+          <li>차량 컨트롤러</li><li>센서류</li><li>배선 하네스</li><li>계기판</li><li>스위치 &amp; 릴레이</li>
+        </ul>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROCESS ===================== -->
+<section id="process" class="section process">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">PROCESS</p>
+      <h2 class="section-title">구매는 순서가 품질을 만듭니다</h2>
+      <p class="section-desc">수요 파악부터 사후 관리까지, 일관된 프로세스로 리스크를 줄입니다.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="t-step" data-reveal style="--i:0">
+        <div class="t-num">01</div>
+        <div class="t-body"><h4>수요 분석</h4><p>생산 계획과 BOM을 기준으로 유압·동력·전장 부품 수요를 예측합니다.</p></div>
+      </div>
+      <div class="t-step" data-reveal style="--i:1">
+        <div class="t-num">02</div>
+        <div class="t-body"><h4>공급사 발굴</h4><p>국내외 검증된 협력사를 발굴하고 대체 공급망을 확보합니다.</p></div>
+      </div>
+      <div class="t-step" data-reveal style="--i:2">
+        <div class="t-num">03</div>
+        <div class="t-body"><h4>품질 검증</h4><p>규격서·샘플 테스트·공급사 현장 감사로 품질 기준을 확인합니다.</p></div>
+      </div>
+      <div class="t-step" data-reveal style="--i:3">
+        <div class="t-num">04</div>
+        <div class="t-body"><h4>원가 협상</h4><p>원가 구조를 분석해 근거 있는 협상으로 합리적 단가를 이끌어냅니다.</p></div>
+      </div>
+      <div class="t-step" data-reveal style="--i:4">
+        <div class="t-num">05</div>
+        <div class="t-body"><h4>납기 관리</h4><p>생산 일정과 연동하여 입고 리드타임을 통제하고 지연을 예방합니다.</p></div>
+      </div>
+      <div class="t-step" data-reveal style="--i:5">
+        <div class="t-num">06</div>
+        <div class="t-body"><h4>사후 관리</h4><p>품질 클레임과 개선 요청에 대응하며 협력사 관계를 지속 관리합니다.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ACHIEVEMENTS ===================== -->
+<section id="achievements" class="section achievements">
+  <div class="container">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">TRACK RECORD</p>
+      <h2 class="section-title">숫자로 보는 구매 성과</h2>
+      <p class="section-desc">아래 수치는 예시입니다. 실제 성과 데이터로 교체해 사용하세요.</p>
+    </div>
+
+    <div class="stat-grid">
+
+      <div class="stat-card" data-reveal="scale" style="--i:0">
+        <div class="gauge-wrap">
+          <svg viewBox="0 0 200 110" aria-hidden="true">
+            <path class="gauge-track" d="M10,100 A90,90 0 0 1 190,100"/>
+            <path class="gauge-fill" data-target="92" d="M10,100 A90,90 0 0 1 190,100" stroke="#3ED9A0" stroke-dasharray="282.6" stroke-dashoffset="282.6"/>
+            <line class="gauge-needle" data-needle="92" x1="100" y1="100" x2="100" y2="34" stroke="#fff" stroke-width="3" stroke-linecap="round" transform="rotate(-90 100 100)"/>
+            <circle cx="100" cy="100" r="7" fill="#fff"/>
+          </svg>
+          <div class="gauge-value"><span data-count="92">0</span>점</div>
+        </div>
+        <p class="label">원가 절감 기여도 (100점 만점)</p>
+      </div>
+
+      <div class="stat-card" data-accent="amber" data-reveal="scale" style="--i:1">
+        <div class="gauge-wrap">
+          <svg viewBox="0 0 200 110" aria-hidden="true">
+            <path class="gauge-track" d="M10,100 A90,90 0 0 1 190,100"/>
+            <path class="gauge-fill" data-target="98" d="M10,100 A90,90 0 0 1 190,100" stroke="#FFB238" stroke-dasharray="282.6" stroke-dashoffset="282.6"/>
+            <line class="gauge-needle" data-needle="98" x1="100" y1="100" x2="100" y2="34" stroke="#fff" stroke-width="3" stroke-linecap="round" transform="rotate(-90 100 100)"/>
+            <circle cx="100" cy="100" r="7" fill="#fff"/>
+          </svg>
+          <div class="gauge-value"><span data-count="98">0</span>%</div>
+        </div>
+        <p class="label">납기 준수율</p>
+      </div>
+
+      <div class="stat-card" data-reveal="scale" style="--i:2">
+        <p class="bignum"><span data-count="42">0</span>개사</p>
+        <p class="label">관리 협력사 네트워크</p>
+      </div>
+
+      <div class="stat-card" data-accent="sky" data-reveal="scale" style="--i:3">
+        <p class="bignum"><span data-count="1200">0</span>+</p>
+        <p class="label">검증 완료 취급 부품 수</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SKILLS ===================== -->
+<section id="skills" class="section skills">
+  <div class="container skills-grid">
+    <div data-reveal>
+      <p class="eyebrow">CORE SKILL</p>
+      <h2 class="section-title" style="margin-bottom:30px;">구매 업무를 지탱하는 역량</h2>
+
+      <div class="bar-item"><div class="top"><b>원가 분석 &amp; 협상</b><span>95</span></div><div class="bar-track"><div class="bar-fill" data-bar="95"></div></div></div>
+      <div class="bar-item"><div class="top"><b>유압·동력·전장 스펙 검토</b><span>92</span></div><div class="bar-track"><div class="bar-fill" data-bar="92"></div></div></div>
+      <div class="bar-item"><div class="top"><b>공급망(SCM) 관리</b><span>88</span></div><div class="bar-track"><div class="bar-fill" data-bar="88"></div></div></div>
+      <div class="bar-item"><div class="top"><b>품질 규격 검증</b><span>90</span></div><div class="bar-track"><div class="bar-fill" data-bar="90"></div></div></div>
+      <div class="bar-item"><div class="top"><b>비즈니스 영어 커뮤니케이션</b><span>82</span></div><div class="bar-track"><div class="bar-fill" data-bar="82"></div></div></div>
+    </div>
+
+    <div data-reveal style="--i:1">
+      <p class="eyebrow">TOOLS &amp; CERT</p>
+      <h2 class="section-title" style="margin-bottom:26px;">보유 자격 &amp; 활용 툴</h2>
+      <div class="chip-cloud">
+        <span class="chip">ISO 9001</span>
+        <span class="chip">KS 규격 검토</span>
+        <span class="chip">SAP / ERP</span>
+        <span class="chip">원가구조 분석(BOM Costing)</span>
+        <span class="chip">SRM 협력사 관리</span>
+        <span class="chip">수입통관 / Incoterms</span>
+        <span class="chip">품질 감사(Audit)</span>
+        <span class="chip">유압 회로 도면 해석</span>
+        <span class="chip">전장 회로 기초</span>
+        <span class="chip">비즈니스 영어</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact" class="section contact">
+  <div class="container contact-grid">
+    <div data-reveal>
+      <p class="eyebrow">CONTACT</p>
+      <h2 class="section-title" style="margin-bottom:24px;">협업 문의</h2>
+      <p class="section-desc" style="margin-bottom:30px;">유압 · 동력 · 전장 부품 소싱, 협력사 제안, 채용 관련 문의를 환영합니다.</p>
+      <ul class="contact-info">
+        <li><span class="ico">@</span><div>이메일<b>example@email.com</b></div></li>
+        <li><span class="ico">☎</span><div>연락처<b>010-0000-0000</b></div></li>
+        <li><span class="ico">in</span><div>LinkedIn<b>linkedin.com/in/example</b></div></li>
+      </ul>
+    </div>
+
+    <div data-reveal style="--i:1">
+      <form class="form-card" id="contactForm" novalidate>
+        <div class="form-row">
+          <div>
+            <label for="fname">이름</label>
+            <input id="fname" name="fname" type="text" required placeholder="홍길동">
+          </div>
+          <div>
+            <label for="femail">이메일</label>
+            <input id="femail" name="femail" type="email" required placeholder="you@company.com">
+          </div>
+        </div>
+        <div class="full">
+          <label for="fsubject">문의 유형</label>
+          <input id="fsubject" name="fsubject" type="text" placeholder="예: 유압 부품 공급 제안">
+        </div>
+        <div class="full">
+          <label for="fmsg">문의 내용</label>
+          <textarea id="fmsg" name="fmsg" required placeholder="문의하실 내용을 입력해 주세요."></textarea>
+        </div>
+        <div class="submit-row">
+          <button type="submit" class="btn btn-primary">문의 보내기</button>
+          <span class="form-note">* 데모 페이지로, 실제 전송을 위해서는 서버 연동이 필요합니다.</span>
+        </div>
+        <div class="toast" id="formToast">문의가 접수되었습니다. 빠르게 회신드리겠습니다.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-row">
+    <p><span class="brand">구매 전문가 PR</span> · 산업차량 유압 · 동력 · 전장 조달 &copy; 2026</p>
+    <a href="#hero" class="to-top" aria-label="맨 위로">↑</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- scroll progress bar ---------- */
+  var progressEl = document.getElementById('scrollProgress');
+  function updateProgress(){
+    var h = document.documentElement;
+    var scrolled = h.scrollTop;
+    var max = h.scrollHeight - h.clientHeight;
+    var pct = max > 0 ? (scrolled / max) * 100 : 0;
+    progressEl.style.width = pct + '%';
+  }
+  document.addEventListener('scroll', updateProgress, { passive:true });
+  updateProgress();
+
+  /* ---------- scroll reveal ---------- */
+  var revealEls = document.querySelectorAll('[data-reveal]');
+  var revealObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.18, rootMargin: '0px 0px -60px 0px' });
+  revealEls.forEach(function(el){ revealObserver.observe(el); });
+
+  /* ---------- bookmark nav active state + smooth scroll ---------- */
+  var tabs = document.querySelectorAll('.bookmark-tab');
+  var sections = Array.prototype.map.call(tabs, function(tab){
+    return document.getElementById(tab.getAttribute('data-target'));
+  });
+
+  var navObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      var idx = sections.indexOf(entry.target);
+      if (idx === -1) return;
+      if (entry.isIntersecting){
+        tabs.forEach(function(t){ t.classList.remove('active'); });
+        tabs[idx].classList.add('active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+
+  sections.forEach(function(sec){ if (sec) navObserver.observe(sec); });
+
+  tabs.forEach(function(tab){
+    tab.addEventListener('click', function(e){
+      e.preventDefault();
+      var target = document.getElementById(tab.getAttribute('data-target'));
+      if (target){ target.scrollIntoView({ behavior:'smooth', block:'start' }); }
+    });
+  });
+
+  /* ---------- count-up numbers ---------- */
+  function animateCount(el, target, duration){
+    var start = 0;
+    var startTime = null;
+    function step(ts){
+      if (!startTime) startTime = ts;
+      var progress = Math.min((ts - startTime) / duration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var val = Math.round(start + (target - start) * eased);
+      el.textContent = val.toLocaleString('ko-KR');
+      if (progress < 1){ requestAnimationFrame(step); }
+    }
+    requestAnimationFrame(step);
+  }
+
+  var countEls = document.querySelectorAll('[data-count]');
+  var countObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        var el = entry.target;
+        var target = parseInt(el.getAttribute('data-count'), 10) || 0;
+        animateCount(el, target, 1500);
+        countObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  countEls.forEach(function(el){ countObserver.observe(el); });
+
+  /* ---------- gauges (arc fill + needle) ---------- */
+  var gaugeFills = document.querySelectorAll('.gauge-fill');
+  var gaugeObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        var el = entry.target;
+        var pct = parseFloat(el.getAttribute('data-target')) || 0;
+        var full = 282.6; /* semicircle length, r=90 */
+        var offset = full - (full * (pct/100));
+        requestAnimationFrame(function(){ el.style.strokeDashoffset = offset; });
+
+        var wrap = el.closest('.gauge-wrap');
+        var needle = wrap ? wrap.querySelector('.gauge-needle') : null;
+        if (needle){
+          var deg = -90 + (pct/100) * 180;
+          requestAnimationFrame(function(){
+            needle.setAttribute('transform', 'rotate(' + deg + ' 100 100)');
+          });
+        }
+        gaugeObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  gaugeFills.forEach(function(el){ gaugeObserver.observe(el); });
+
+  /* ---------- skill bars ---------- */
+  var bars = document.querySelectorAll('.bar-fill');
+  var barObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        var el = entry.target;
+        var val = el.getAttribute('data-bar') || 0;
+        requestAnimationFrame(function(){ el.style.width = val + '%'; });
+        barObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.4 });
+  bars.forEach(function(el){ barObserver.observe(el); });
+
+  /* ---------- contact form (client-side demo) ---------- */
+  var form = document.getElementById('contactForm');
+  var toast = document.getElementById('formToast');
+  if (form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (!form.checkValidity()){
+        form.reportValidity();
+        return;
+      }
+      toast.classList.add('show');
+      form.reset();
+      setTimeout(function(){ toast.classList.remove('show'); }, 4000);
+    });
+  }
+})();
+</script>
+</body>
+</html>
